@@ -11,12 +11,10 @@ import com.example.demo.service.PostoService;
 public class PostoController extends BaseController<PostoDTO> {
 
     private PostoService service;
-
-
+    
     protected PostoController(PostoService service){
         super(service);
 
         this.service = service;
-        
     }
 }

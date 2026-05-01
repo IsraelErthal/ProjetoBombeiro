@@ -46,7 +46,6 @@ public class ArquivoService {
             arquivo.setTamanho(file.getSize());
             arquivo.setTipo(file.getContentType());
 
-            
             return arquivoRepository.save(arquivo);
             
         } catch (IOException e) {

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.annotations.Public;
 import com.example.demo.config.JwtUtil;
 import com.example.demo.dto.AuthDTO;
-import com.example.demo.entity.Pessoa;
-import com.example.demo.repository.PessoaRepository;
+import com.example.demo.entity.Bombeiro;
+import com.example.demo.repository.BombeiroRepository;
 
 import jakarta.validation.Valid;
 
@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 public class AuthController {
 
     @Autowired
-    private PessoaRepository pessoaRepository;
+    private BombeiroRepository bombeiroRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,12 +42,12 @@ public class AuthController {
         String email = dto.getEmail();
         String senha = dto.getSenha(); // Ainda em texto puro
 
-        Optional<Pessoa> pessoaOpt = pessoaRepository.findByEmail(email);
+        Optional<Bombeiro> bombeiroOpt = bombeiroRepository.findByEmail(email);
 
-        if (pessoaOpt.isPresent() && passwordEncoder.matches(senha, pessoaOpt.get().getSenha())) {
+        if (bombeiroOpt.isPresent() && passwordEncoder.matches(senha, bombeiroOpt.get().getSenha())) {
             // DEU CERTO SENHA IGUAL
 
-            String nivelAcesso = pessoaOpt.get().getNivelAcesso().toString();
+            String nivelAcesso = bombeiroOpt.get().getNivelAcesso().toString();
 
             String token = jwtUtil.generateToken(email, nivelAcesso);
 

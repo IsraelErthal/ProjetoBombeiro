@@ -11,5 +11,6 @@ public class CheckinDTO {
     @NotNull(message = "O id do posto é obrigatório")
     private Long postoId;
 
+    @NotNull(message = "A foto é obrigatória")
     private MultipartFile foto;
 }

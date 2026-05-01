@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.annotations.Public;
 import com.example.demo.dto.CheckinDTO;
+import com.example.demo.dto.CheckinResponseDTO;
+import com.example.demo.dto.CheckoutDTO;
+import com.example.demo.dto.CheckoutResponseDTO;
 import com.example.demo.service.CheckService;
 
 import jakarta.validation.Valid;
@@ -18,10 +22,15 @@ public class CheckController {
     @Autowired
     private CheckService checkService;
 
-
-
     @PostMapping("/in")
-    public void checkin(@ModelAttribute @Valid CheckinDTO dto){
-        checkService.checkin(dto);
+    @Public
+    public CheckinResponseDTO checkin(@ModelAttribute @Valid CheckinDTO dto){
+      return checkService.checkin(dto);
+    }
+
+    @PostMapping("/out")
+    @Public
+    public CheckoutResponseDTO checkout(@ModelAttribute @Valid CheckoutDTO dto){
+      return checkService.checkout(dto);
     }
 }

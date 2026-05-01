@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "pessoa")
+@Table(name = "admin")
 @EqualsAndHashCode(callSuper = false)
-public class Pessoa extends BaseEntity {
+public class Admin extends BaseEntity {
 
     @Column(nullable = false, length = 200, unique = true)
     private String email;
@@ -25,6 +25,5 @@ public class Pessoa extends BaseEntity {
     private String senha;
 
     @Column(name = "nivel_acesso", nullable = false)
-    private NivelAcesso nivelAcesso = NivelAcesso.PADRAO;
-
+    private NivelAcesso nivelAcesso = NivelAcesso.ADMIN;
 }   
